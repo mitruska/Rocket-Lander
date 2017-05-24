@@ -1,9 +1,0 @@
-{
-  "gravity": 0.01,
-  "fuel": 0.23,
-  "rocketMass": 0.5,
-  "thrustForce": 1.0,
-  "turningForce": 1.0,
-
-  "happy": "Happy" 
-}
