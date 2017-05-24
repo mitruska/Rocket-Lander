@@ -2,29 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
-
+[System.Serializable]
 public class Rocket : MonoBehaviour
 {
+   // Parametry takie jak grawitacja, ilość paliwa, siła ciągu, siła przechylania i masa rakiety wczytywane z pliku w formacie JSON
+   // Ilość prób i sukcesów zapisywana i zachowywana nawet po wyłączeniu aplikacji
 
     public Vector2 power;
-    public static int score = 0;
-    public float thrustForce;  
-    public float turningForce; 
+    public static int score;
+    public float gravity;
     public float fuel;
+    public float rocketMass;
+    public float thrustForce;  
+    public float turningForce;
 
-    public static bool isWasted = false;
+
+    public string happy = "hello";
+
+    public static bool isWasted = false;  //lack of fuel
     public bool splashOnce = false;
 
     public new Rigidbody2D rigidbody2D;
 
+    private string jsonString;
 
+    public void Load(string savedData)
+    {  
+        JsonUtility.FromJsonOverwrite(savedData, this);
+    }
 
     void Start()
     {
+        jsonString = File.ReadAllText(Application.dataPath + "/rocketAttributes.json");
+        Debug.Log(jsonString);
+        Load(jsonString);
+        Debug.Log(happy);
+        Debug.Log(fuel);
         isWasted = false;
         rigidbody2D = GetComponent<Rigidbody2D>();
         splashOnce = true;
+
+        rigidbody2D.gravityScale = this.gravity;
+        Debug.Log(rigidbody2D.gravityScale);
+       
     }
 
 

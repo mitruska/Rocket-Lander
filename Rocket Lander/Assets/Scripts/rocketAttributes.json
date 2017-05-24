@@ -1,0 +1,6 @@
+{
+  "mass" : 0.5,
+  "gravityScale" : 0.25,
+  "fuel": 12,
+  "happy" : "yes"
+}
