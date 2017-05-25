@@ -13,33 +13,18 @@ public class Controller : MonoBehaviour {
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.1f, 0.0f));
         Debug.Log("Right Button");
-
-        //float smooth = 2.0F;
-        //float tiltAngle = 30.0F;
-
-        //float tiltAroundZ = Input.GetAxis("Horizontal") * tiltAngle;
-        //float tiltAroundX = Input.GetAxis("Vertical") * tiltAngle;
-        //Quaternion target = Quaternion.Euler(tiltAroundX, 0, tiltAroundZ);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
-
-        //rigidbody2D.AddTorque(10.0f);
-
     }
 
     public void TurnLeft()
     {
         rigidbody2D.MovePosition(rigidbody2D.position - new Vector2(0.1f, 0.0f));
         Debug.Log("Left Button");
-
     }
 
     public void Power()
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.0f, 0.01f));
         Debug.Log("Power Button");
-
-      // rigidbody2D.AddForce(transform.up);
-
     }
 
     public void setRIsPress()

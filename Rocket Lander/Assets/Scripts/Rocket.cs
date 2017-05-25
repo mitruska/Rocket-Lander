@@ -25,7 +25,7 @@ public class Rocket : MonoBehaviour
 
     public static bool isWasted = false; 
     public static bool isLanding = false; 
-    public bool splashOnce = true;
+    public static bool splashOnce = false;
     public bool newGame = false;
 
     public new Rigidbody2D rigidbody2D;
@@ -39,7 +39,7 @@ public class Rocket : MonoBehaviour
       //  Debug.Log(fuel);
 
         isWasted = false;
-        splashOnce = true;
+        splashOnce = false;
         isLanding = false;
 
         rigidbody2D.gravityScale = gravity;
@@ -56,10 +56,10 @@ public class Rocket : MonoBehaviour
 
     void Splash()
     {
-        if (splashOnce)
+        if (splashOnce == false && isLanding == false)
         {
-            isLanding = false;
-            splashOnce = false;
+            isLanding = true;
+            splashOnce = true;
             Invoke("Die", 0.2f);
         }
     }
@@ -76,35 +76,45 @@ public class Rocket : MonoBehaviour
     {     
         int scene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
+       // Application.LoadLevel(Application.loadedLevel);
     }
 
     void Land()
     {
+        isLanding = false;
+        splashOnce = true;
         success++;
         Debug.Log("Score = " + success);
-        isLanding = false;
         Invoke("RestartLevel", 0.5f);
 
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
+            Debug.Log("to koliduje" + collision.gameObject.tag);
         if (collision.gameObject.tag != "landingspace")
         {
-            Splash();
+            if (splashOnce == false && isLanding == false)
+            {
+                Splash();
+            }
         }
     }
   
     void UpdateUI()
     {
-        scoreText.text = "score: " + success + "/" + (success + fails);
+        scoreText.text = "Success: " + success + " Fails: " + fails + " Total: " + (success + fails);
         fuelText.text = "fuel: " + fuel.ToString();
     }
 
     void Update()
     {
+        //Debug.Log(gameObject.tag);
+
         UpdateUI();
-        if (isLanding)
+
+        if (isLanding == true && splashOnce == false)
         {
             Land();
         }
