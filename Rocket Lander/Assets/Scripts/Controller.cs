@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour {
     public bool lIsPress = false;
     public bool pIsPress = false;
 
-
     public void TurnRight()
     {
         rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.1f, 0.0f));
@@ -25,16 +24,12 @@ public class Controller : MonoBehaviour {
 
         //rigidbody2D.AddTorque(10.0f);
 
-
-
-
     }
 
     public void TurnLeft()
     {
         rigidbody2D.MovePosition(rigidbody2D.position - new Vector2(0.1f, 0.0f));
         Debug.Log("Left Button");
-
 
     }
 
@@ -46,8 +41,6 @@ public class Controller : MonoBehaviour {
       // rigidbody2D.AddForce(transform.up);
 
     }
-
-
 
     public void setRIsPress()
     {
@@ -87,12 +80,9 @@ public class Controller : MonoBehaviour {
 
     }
 
-
-
     void Start () {
         rigidbody2D = GetComponent<Rigidbody2D>();
     }
-	
 
 	void Update () {
 
