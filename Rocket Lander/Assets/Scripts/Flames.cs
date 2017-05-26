@@ -9,6 +9,7 @@ public class Flames : MonoBehaviour {
     private void Start()
     {
         flame = GetComponent<ParticleSystem>();
+        flame.Play();
     }
 
     void Update()

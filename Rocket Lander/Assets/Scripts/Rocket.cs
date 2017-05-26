@@ -36,9 +36,15 @@ public class Rocket : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         Debug.Log(Application.dataPath);
         jsonString = File.ReadAllText(Application.dataPath + "/Resources/rocketAttributes.json");
-      //  Debug.Log(jsonString);
-        Load(jsonString);
-      //  Debug.Log(fuel);
+        
+        //string path = System.IO.Path.Combine(Application.streamingAssetsPath, "rocketAttributes");
+        //jsonString = File.ReadAllText(path);
+
+        Debug.Log(jsonString);
+        JsonUtility.FromJsonOverwrite(jsonString, this);
+
+        Debug.Log(jsonString);
+        //Resources.Load("rocketAttributes");
 
         isWasted = false;
         splashOnce = false;
@@ -49,13 +55,10 @@ public class Rocket : MonoBehaviour
         rigidbody2D.angularDrag = turningForce;
 
         powering = fuel;
+        Debug.Log(fuel);
+
         endingText.text = "";
         UpdateUI();
-    }
-
-    public void Load(string savedData)
-    {
-        JsonUtility.FromJsonOverwrite(savedData, this);
     }
 
     void Splash()
