@@ -15,7 +15,7 @@ public class Rocket : MonoBehaviour
     public float turningForce;
     public float fuel;
 
-    public Vector2 power;
+    public static float powering;
     public static int success = 0;
     public static int fails = 0;
 
@@ -46,6 +46,8 @@ public class Rocket : MonoBehaviour
         rigidbody2D.drag = thrustForce;
         rigidbody2D.angularDrag = turningForce;
 
+        powering = fuel;
+
         UpdateUI();
     }
 
@@ -72,11 +74,18 @@ public class Rocket : MonoBehaviour
         Debug.Log("die collision");
     }
 
-    void RestartLevel()
+    public void RestartLevel()
     {     
         int scene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(scene, LoadSceneMode.Single);
        // Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void RestartScore()
+    {
+        success = 0;
+        fails = 0;
+
     }
 
     void Land()
@@ -86,13 +95,12 @@ public class Rocket : MonoBehaviour
         success++;
         Debug.Log("Score = " + success);
         Invoke("RestartLevel", 0.5f);
-
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         
-            Debug.Log("to koliduje" + collision.gameObject.tag);
+        Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.tag != "landingspace")
         {
             if (splashOnce == false && isLanding == false)
@@ -112,7 +120,10 @@ public class Rocket : MonoBehaviour
     {
         //Debug.Log(gameObject.tag);
 
-        UpdateUI();
+        if(powering < 0.0f)
+        {
+            isWasted = true;
+        }
 
         if (isLanding == true && splashOnce == false)
         {
@@ -123,6 +134,7 @@ public class Rocket : MonoBehaviour
             Splash();
         }
 
+        UpdateUI();
 
     }
 }

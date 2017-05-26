@@ -57,9 +57,10 @@ public class Controller : MonoBehaviour {
         if (pIsPress)
         {
             pIsPress = false;
+            Rocket.powering -= 0.1f;
         }
         else
-        {
+        {   
             pIsPress = true;
         }
 
@@ -85,7 +86,5 @@ public class Controller : MonoBehaviour {
         {
             Power();
         }
-
-
     }
 }
