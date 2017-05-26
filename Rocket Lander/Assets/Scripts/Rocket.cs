@@ -12,7 +12,6 @@ using System;
 [System.Serializable]
 public class Rocket : MonoBehaviour
 {
-    //public static Rocket rocket;
     //from json
     public float gravity;
     public float rocketMass;
@@ -40,26 +39,12 @@ public class Rocket : MonoBehaviour
         public int fails = 0;
     }
 
-    //private void Awake ()
-    //{
-    //    if (rocket == null)
-    //    {
-    //        DontDestroyOnLoad(gameObject);
-    //        rocket = this;
-    //    }
-    //    //else if (rocket != this)
-    //    //{
-    //    //    Destroy(gameObject);
-    //    //}
-    //}
-
     private void LoadGameData ()
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "rocketAttributes.json");
 
         if (File.Exists(filePath))
         {
-            // string filePath = System.IO.Path.Combine(Application.streamingAssetsPath, "rocketAttributes");
             string dataAsJson = File.ReadAllText(filePath);
             JsonUtility.FromJsonOverwrite(dataAsJson, this);
             Debug.Log(dataAsJson);
