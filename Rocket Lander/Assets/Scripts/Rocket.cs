@@ -191,7 +191,6 @@ public class Rocket : MonoBehaviour
     {
         if (splashOnce == false && isLanding == false)
         {
-            //isLanding = true;
             splashOnce = true;
             isWasted = true;
             Invoke("Die", 0.2f);
@@ -214,13 +213,14 @@ public class Rocket : MonoBehaviour
     void UpdateUI()
     {
         scoreText.text = "Success: " + success + " Fails: " + fails + " \nTotal: " + (success + fails).ToString();
-        fuelText.text = "fuel: " + fuel;
+        if (fuel < 0.0f)
+            fuelText.text = "NO POWER !";
+        else
+            fuelText.text = "Fuel: " + fuel;
     }
 
     void Update()
     {
-        //Debug.Log(gameObject.tag);
-
         if (fuel < 0.0f)
         {
             isWasted = true;

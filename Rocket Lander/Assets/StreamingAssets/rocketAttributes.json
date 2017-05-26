@@ -1,5 +1,5 @@
 {
-  "gravity": 0.05,
+  "gravity": 0.1,
   "fuel": 20.0,
   "rocketMass": 0.5,
   "thrustForce": 2.0,

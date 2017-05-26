@@ -11,19 +11,19 @@ public class Controller : MonoBehaviour {
 
     public void TurnRight()
     {
-        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.1f, 0.0f));
+        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.05f, 0.0f));
         Debug.Log("Right Button");
     }
 
     public void TurnLeft()
     {
-        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(-0.1f, 0.0f));
+        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(-0.05f, 0.0f));
         Debug.Log("Left Button");
     }
 
     public void Power()
     {
-        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.0f, 0.01f));
+        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(0.0f, 0.05f));
         Debug.Log("Power Button");
     }
 
