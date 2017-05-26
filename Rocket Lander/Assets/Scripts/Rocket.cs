@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using UnityEngine.UI;
+using System;
+
 
 [System.Serializable]
 public class Rocket : MonoBehaviour
@@ -19,20 +21,20 @@ public class Rocket : MonoBehaviour
     public static int success = 0;
     public static int fails = 0;
 
-    public Text scoreText, fuelText;
+    public Text scoreText, fuelText, endingText;
 
     private string jsonString;
 
     public static bool isWasted = false; 
     public static bool isLanding = false; 
     public static bool splashOnce = false;
-    public bool newGame = false;
 
     public new Rigidbody2D rigidbody2D;
    
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        Debug.Log(Application.dataPath);
         jsonString = File.ReadAllText(Application.dataPath + "/Resources/rocketAttributes.json");
       //  Debug.Log(jsonString);
         Load(jsonString);
@@ -47,7 +49,7 @@ public class Rocket : MonoBehaviour
         rigidbody2D.angularDrag = turningForce;
 
         powering = fuel;
-
+        endingText.text = "";
         UpdateUI();
     }
 
@@ -62,14 +64,15 @@ public class Rocket : MonoBehaviour
         {
             isLanding = true;
             splashOnce = true;
+            isWasted = true;
             Invoke("Die", 0.2f);
         }
     }
 
     void Die()
     {
-        isWasted = true;
         fails++;
+        endingText.text = "BOOOOM !";
         Invoke("RestartLevel", 1.5f);
         Debug.Log("die collision");
     }
@@ -85,13 +88,13 @@ public class Rocket : MonoBehaviour
     {
         success = 0;
         fails = 0;
-
     }
 
     void Land()
     {
         isLanding = false;
         splashOnce = true;
+        endingText.text = "GREAT !";
         success++;
         Debug.Log("Score = " + success);
         Invoke("RestartLevel", 0.5f);
@@ -112,8 +115,8 @@ public class Rocket : MonoBehaviour
   
     void UpdateUI()
     {
-        scoreText.text = "Success: " + success + " Fails: " + fails + " Total: " + (success + fails);
-        fuelText.text = "fuel: " + fuel.ToString();
+        scoreText.text = "Success: " + success + " Fails: " + fails + " \nTotal: " + (success + fails);
+        fuelText.text = "fuel: " + powering;
     }
 
     void Update()

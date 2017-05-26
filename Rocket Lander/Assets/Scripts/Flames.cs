@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Flames : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    ParticleSystem flame;
+
+    private void Start()
+    {
+        flame = GetComponent<ParticleSystem>();
+    }
+
+    void Update()
+    {
+        if (Rocket.isLanding || Rocket.isWasted)
+        {
+            flame.Stop();
+        }
+    }
 }
