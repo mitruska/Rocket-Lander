@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Controller.cs" />
-    <Compile Include="Assets\Scripts\Fireworks.cs" />
+    <Compile Include="Assets\Scripts\Explosion.cs" />
     <Compile Include="Assets\Scripts\Flames.cs" />
     <Compile Include="Assets\Scripts\LandingSpace.cs" />
     <Compile Include="Assets\Scripts\LevelLoader.cs" />

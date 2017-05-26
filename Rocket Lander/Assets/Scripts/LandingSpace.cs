@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class LandingSpace : MonoBehaviour
 {
+    private void Start()
+    {
+        fireworks = GetComponent<ParticleSystem>();
+    }
 
+    ParticleSystem fireworks;
     void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -14,6 +19,8 @@ public class LandingSpace : MonoBehaviour
             if (collision.gameObject.tag == "checkpoint")
             {
                 Rocket.isLanding = true;
+                fireworks.Play();
+
             }
             else
             {
