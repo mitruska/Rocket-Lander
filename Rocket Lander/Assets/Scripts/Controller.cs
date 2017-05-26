@@ -17,7 +17,7 @@ public class Controller : MonoBehaviour {
 
     public void TurnLeft()
     {
-        rigidbody2D.MovePosition(rigidbody2D.position - new Vector2(0.1f, 0.0f));
+        rigidbody2D.MovePosition(rigidbody2D.position + new Vector2(-0.1f, 0.0f));
         Debug.Log("Left Button");
     }
 
@@ -27,46 +27,58 @@ public class Controller : MonoBehaviour {
         Debug.Log("Power Button");
     }
 
+    //Turn Right
     public void setRIsPress()
     {
-        if (rIsPress)
+        if(Rocket.isWasted == false)
         {
-            rIsPress = false;
-        }
-        else
-        {
-            rIsPress = true;
-        }
+            if (rIsPress)
+            {
+                rIsPress = false;
+            }
+            else
+            {
+                rIsPress = true;
+            }
+        }   
     }
 
+    //Turn Left
         public void setLIsPress()
     {
-        if (lIsPress)
+        if (Rocket.isWasted == false)
         {
-            lIsPress = false;
-        }
-        else
-        {
-            lIsPress = true;
-        }
-
+            if (lIsPress)
+            {
+                lIsPress = false;
+            }
+            else
+            {
+                lIsPress = true;
+            }
+        }     
     }
 
+    //Power
     public void setPIsPress()
     {
-        if (pIsPress)
+        if (Rocket.isWasted == false)
         {
-            pIsPress = false;
-        }
-        else
-        {   
-            pIsPress = true;
-        }
-
+            if (pIsPress)
+            {
+                pIsPress = false;
+            }
+            else
+            {
+                pIsPress = true;
+            }
+        }    
     }
 
     void Start () {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        Debug.Log(rigidbody2D.mass);
+
     }
 
 	void Update () {

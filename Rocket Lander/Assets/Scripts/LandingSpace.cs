@@ -12,7 +12,6 @@ public class LandingSpace : MonoBehaviour
     ParticleSystem fireworks;
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         Debug.Log(collision.gameObject.tag);
         if (Rocket.splashOnce == false)
         {
